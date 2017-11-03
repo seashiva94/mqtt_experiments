@@ -92,7 +92,7 @@ client.connect(broker)
 client.loop_start()
 
 while True:
-	""""
+	#""""
 	print "smile and recover "
 	smile(client, "topic/dendrite/respond")
 	print "sleeping"

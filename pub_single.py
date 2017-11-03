@@ -2,8 +2,6 @@ import paho.mqtt.client as mqtt
 import time
 
 def on_connect(client, user_data, flags, rc):
-	client.publish("await_event","test_message")
-
 	if rc==0:
 		print "connected OK"
 	else:
@@ -15,27 +13,19 @@ def on_log(client, userdata, level, buff):
 def on_disconnect(client, user_data, flags, rc=0):
 	print "disconnected with code :", rc
 
-def on_message(client, userdata, msg):
-	s = str(msg.payload)
-	print "message recvd :", s
-	values = s.strip().split(" ")
-	numbers = [0 if s == "OFF" else 1 for s in values]
-	print  values, numbers
+broker = "iot.eclipse.org"
 
-#broker = "iot.eclipse.org"
-broker = "127.0.0.1"
-
-client = mqtt.Client("doby's ssubscriber")
+client = mqtt.Client("doby's ppublisher")
 client.on_connect = on_connect
 client.on_log = on_log
 client.on_disconnect = on_disconnect
-client.on_message = on_message
 print "connecting to broker"
 
 ##async loop rins in a separate thread, for callbacks to be processed
 client.connect(broker)
-client.subscribe("topic/hierarchy/like")
-
-client.loop_forever()
-#client.loop_stop()
-#client.disconnect()
+client.loop_start()
+time.sleep(2)
+client.publish("topic/hierarchy/like", "this is a test message")
+time.sleep(5)
+client.loop_stop()
+client.disconnect()
