@@ -96,19 +96,19 @@ while True:
 	print "smile and recover "
 	smile(client, "topic/dendrite/respond")
 	print "sleeping"
-	time.sleep(15)
+	time.sleep(20)
 	print "frown and recover"
 	frown(client, "topic/dendrite/respond")
 	print "sleeping"
-	time.sleep(15)
+	time.sleep(20)
 
 	print "all on and recover"
 	on(client, "topic/dendrite/respond")
-	time.sleep(15)
+	time.sleep(20)
 
 	print "alternate"
 	alternate(client, "topic/dendrite/respond")
-	time.sleep(15)
+	time.sleep(20)
 
 #print "WAVE 3"
 #wave3(client, "topic/dendrite/respond")
