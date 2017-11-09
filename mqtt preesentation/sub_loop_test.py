@@ -59,7 +59,7 @@ print "waiting for button press"
 b = Button(pin=2)
 listen = 0
 while True:
-	if True: # b.get() == 1:
+	if b.get() == 1:
 		print "button_pressed"
 		listen = 1
 		client.publish("await_event", "start")
