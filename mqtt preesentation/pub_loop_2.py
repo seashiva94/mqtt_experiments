@@ -1,6 +1,7 @@
 import paho.mqtt.client as mqtt
 import time
 import random
+from thread import start_new_thread
 
 def on_connect(client, user_data, flags, rc):
 	client.subscribe("await_event")
@@ -18,7 +19,8 @@ def on_disconnect(client, user_data, flags, rc=0):
 def on_message(client, use_data , flags, rc=0):
 	print "msg recvd"
 	print "starting"
-	main_loop(client)
+	start_new_thread(main_loop, (client,) )
+	#main_loop(client)
 
 def frown(client, topic):
 	print "frown"
@@ -72,6 +74,7 @@ def alternate(client, topic):
 
 
 def main_loop(client):
+	print "MAIN LOOP CALLED "
 	"""
 	print "smile and recover "
 	smile(client, "topic/dendrite/respond")
@@ -83,14 +86,15 @@ def main_loop(client):
 	time.sleep(15)
 
 	"""
+	time.sleep(2)
+	while True:
+		print "all on and recover"
+		on(client, "topic/dendrite/respond")
+		time.sleep(2)
 
-	print "all on and recover"
-	on(client, "topic/dendrite/respond")
-	time.sleep(5)
-
-	print "alternate"
-	alternate(client, "topic/dendrite/respond")
-	time.sleep(5)
+		print "alternate"
+		alternate(client, "topic/dendrite/respond")
+		time.sleep(2)
 
 
 

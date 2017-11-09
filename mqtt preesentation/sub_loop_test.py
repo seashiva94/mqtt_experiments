@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import time
 from cloudmesh.pi import Button
 from cloudmesh.pi import GroveRelay
-from dendrite_test import Dendrite
+from dendrite import Dendrite
 
 dendrites = []
 
@@ -67,5 +67,5 @@ while True:
 
 #while True:
 client.loop_forever()
-client.loop_stop()
-client.disconnect()
+#client.loop_stop()
+#client.disconnect()
