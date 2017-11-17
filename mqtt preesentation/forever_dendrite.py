@@ -1,3 +1,8 @@
+####
+# connect dendrite relay on port d3 of grovepi
+# the program runs  to periodically turn the dendrite on and off
+####
+
 from dendrite import Dendrite
 import time
 
